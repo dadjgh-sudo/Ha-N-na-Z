@@ -1,0 +1,43 @@
+# Hannaz Tailwind (Play CDN) — iSH friendly
+
+This is a single-file Tailwind starter that uses the Tailwind Play CDN. It is designed to work on iSH (Alpine) on iPhone where Node may not be available.
+
+Files:
+- Hannaz1_STEPS.txt       — steps & notes
+- Hannaz2_index.html      — Tailwind Play CDN demo (edit this)
+- Hannaz3_https_server.py — optional HTTPS server (requires certs)
+- Hannaz4_README.md       — this file
+- Hannaz5_LICENSE         — MIT license
+- Hannaz6_init_git.sh     — helper to init git
+- Hannaz7_gitignore       — recommended ignores
+
+Quick start (in iSH):
+1. mkdir hannaz-tailwind && cd hannaz-tailwind
+2. Copy Hannaz2_index.html into the folder (paste via your editor)
+3. Edit the file with your preferred editor in iSH.
+4. Preview options:
+   - Best: push to GitHub and enable GitHub Pages for browser preview.
+   - Local: python3 -m http.server 8000  (may not be reachable from Safari)
+   - HTTPS (optional): generate certs with openssl and run Hannaz3_https_server.py
+
+Generating certs (optional):
+apk add openssl
+mkdir certs
+cd certs
+openssl req -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 365 -subj "/CN=localhost"
+cd ..
+
+Run HTTPS server:
+chmod +x Hannaz3_https_server.py
+python3 Hannaz3_https_server.py --port 8443 --cert certs/cert.pem --key certs/key.pem
+
+Git:
+apk add git
+git config --global user.name "dadjgh-sudo"
+git config --global user.email "Example@icloud.com"
+chmod +x Hannaz6_init_git.sh
+./Hannaz6_init_git.sh
+
+Notes about iSH and preview:
+- iSH may not allow external access to servers it runs; Safari on iOS might not reach them.
+- For reliable preview in Safari, push to GitHub and use GitHub Pages (free).
